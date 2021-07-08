@@ -1,0 +1,12 @@
+.task {
+  padding: 100px;
+
+  &.video {
+    margin: 50px auto;
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}

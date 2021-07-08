@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import Routes from '../src/routes/Routes';
+
+import Header from '../src/components/Header';
+import SideMenu from './components/SideMenu';
+
+import LessonsConfig from './config/LessonsConfig';
+
+import './style.scss';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <LessonsConfig >
+        <div>
+          <Header />
+          <Routes />
+        </div>
+        <SideMenu />
+      </LessonsConfig>
     </div>
   );
 }

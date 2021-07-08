@@ -1,0 +1,59 @@
+.taskItem {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: none;
+    color: #aeaeae;
+    background-color: none;
+    font-size: 12.6px;
+    cursor: pointer;
+    padding: 20px 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin-top: 0;
+    border-left: 6px solid $dark-200;
+  
+    svg {
+      color: $grey-100;
+      font-size: 20px;
+      margin-left: 8px;
+    }
+  
+    &:hover {
+      background: $dark-50;
+    }
+  
+    &.active {
+      background: $dark-50;
+      border-left: 6px solid $buttonColor;
+    }
+  
+    &.watched {
+      svg {
+        color: $green;
+      }
+    }
+  
+    div {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+  
+    .taskItemNumber {
+      margin-left: 10px;
+      margin-right: 5.4px;
+      font-size: 9px;
+      opacity: 0.4;
+    }
+  
+    .taskItemDuration {
+      display: flex;
+      font-size: 10px;
+      border-radius: 2px;
+      background-color: $dark-150;
+      padding: 4.95px 9px;
+      color: $grey-50;
+    }
+  }
+  

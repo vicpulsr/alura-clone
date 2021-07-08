@@ -1,0 +1,26 @@
+@import "./../settings//colors";
+
+.menuButton {
+    background: none;
+    border: none;
+    border-radius: 50%;
+    height: 33px;
+    width: 31px;
+    background: $dark-200;
+    opacity: 0.55;
+
+    svg:first-child {
+        color: $buttonColor;
+        position: absolute;
+        top: 14px;
+        left: 13px;
+        z-index: 5;
+        stroke-width: 33px;
+    }   
+    
+    .menu {
+        position: relative;
+        z-index: 2;
+        color: $white;
+    }
+}

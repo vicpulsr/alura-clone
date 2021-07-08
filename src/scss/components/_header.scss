@@ -1,0 +1,32 @@
+@import "./../settings/fonts";
+@import "./../settings//colors";
+
+.header {
+  color: #3d464d;
+  background-color: $grey;
+  font-weight: bold;
+  font-size: 21px;
+  font-family: $font-family;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 100px;
+
+  div {
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 10px;
+    }
+
+    .taskNumber {
+      margin-right: 10px;
+      font-size: 12px;
+      color: $grey-100;
+      opacity: 0.75;
+    }
+  }
+}
+
+

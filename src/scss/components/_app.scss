@@ -1,0 +1,26 @@
+.App {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 10% 1fr;
+    grid-template-areas: 
+        "sideMenu header"
+        "sideMenu task"
+    ;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: grid;
+    grid-area: header;
+}
+
+.sideMenu {
+    display: grid;
+    grid-area: sideMenu;
+}
+
+.task {
+    display: grid;
+    grid-area: task;
+}
