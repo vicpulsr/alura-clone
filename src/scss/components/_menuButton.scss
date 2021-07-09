@@ -8,19 +8,34 @@
     width: 31px;
     background: $dark-200;
     opacity: 0.55;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 20px;
 
     svg:first-child {
+        transition: all 300ms ease;;
         color: $buttonColor;
         position: absolute;
-        top: 14px;
+        top: 6px;
         left: 13px;
         z-index: 5;
         stroke-width: 33px;
-    }   
-    
+        transform: rotate(180deg);
+    }  
+
     .menu {
         position: relative;
         z-index: 2;
         color: $white;
+        top: 2px;
     }
+
+    &.opened {
+        svg:first-child {
+            transform: rotate(0deg);
+            left: 0;
+        }   
+    }
+   
 }

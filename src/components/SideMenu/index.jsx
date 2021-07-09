@@ -7,6 +7,7 @@ import { RiBookOpenLine } from 'react-icons/ri';
 import { FaReact } from 'react-icons/fa';
 
 import { useLessons } from '../../config/LessonsConfig';
+import { useMenu } from '../../config/MenuConfig';
 
 import TaskItem from '../TaskItem';
 import MenuButton from '../MenuButton/MenuButton';
@@ -17,8 +18,10 @@ function SideMenu() {
     const [currentLessonId, setCurrentLessonId] = useState();
     let history = useHistory();
 
+    const { menuOpened, setMenuOpened } = useMenu();
+
     useEffect(() => {
-        if(!currentLessonId) {
+        if (!currentLessonId) {
             return;
         }
         let tempCurrentLesson = lessons.filter((lesson) => {
@@ -28,14 +31,14 @@ function SideMenu() {
 
         setCurrentLesson(tempCurrentLesson[0]);
         setCurrentTask(tempCurrentLesson[0].tasks[0])
-    }, [currentLessonId])
+    }, [currentLessonId, lessons, setCurrentLesson, setCurrentTask])
 
-    useEffect(() => { 
+    useEffect(() => {
         setCurrentLessonId(lessons[0].id.toString())
-    }, []);
+    }, [lessons, setCurrentLessonId]);
 
     function getProgress() {
-        if(!currentLesson){
+        if (!currentLesson) {
             return;
         }
 
@@ -43,53 +46,63 @@ function SideMenu() {
             return task.watched === true;
         });
 
-        if(watchedTasks.length === 0) return; 
+        if (watchedTasks.length === 0) return;
         let progressNumber = Math.floor((watchedTasks.length) / (currentLesson.tasks.length) * 100);
         setProgress(progressNumber);
     }
-    
-    return(
-        <div className="sideMenu">
-            <div className="sideMenuHeader">
-                <div>
-                    <MenuButton />
-                    <FaReact className="logo"/>
-                    <span>React: Function Components, em uma obordagem moderna</span>
-                </div>
-                {getProgress()}
-                <div className="progressDiv">
-                    <span className="progressNumber">{!progress ? '0%' : `${progress}%`}</span>
-                    <div className="progressBar">
-                        <div className="progress" style={{ width: `${progress}%` }}> </div>
-                    </div>
-                </div>
-                <div className="inputSearch">
-                    <label for="search">Buscar neste curso</label>
+
+    return (
+        menuOpened && (
+            <div className="sideMenu">
+                <div className="sideMenuHeader">
                     <div>
-                        <input type="text" id="search" name="search" />
-                        <button>Buscar <BsBoxArrowUpRight /> </button>
+                        <MenuButton onClick={
+                            () => {
+                                setMenuOpened(false);
+                            }
+                        } />
+                        <FaReact className="logo" />
+                        <span>React: Function Components, em uma obordagem moderna</span>
+                    </div>
+                    {getProgress()}
+                    <div className="progressDiv">
+                        <span className="progressNumber">{!progress ? '0%' : `${progress}%`}</span>
+                        <div className="progressBar">
+                            <div className="progress" style={{ width: `${progress}%` }}> </div>
+                        </div>
+                    </div>
+                    <div className="inputSearch">
+                        <label htmlFor="search">Buscar neste curso</label>
+                        <div>
+                            <input type="text" id="search" name="search" />
+                            <button>Buscar <BsBoxArrowUpRight /> </button>
+                        </div>
                     </div>
                 </div>
+                <div className="sideMenuLessons">
+                    <h2 className="sideMenuItem"><RiBookOpenLine /> Aula atual</h2>
+                    <select onChange={(event) => {
+                        setCurrentLessonId(event.target.value);
+                        history.push(`/lesson/${event.target.value}/task/1`);
+                    }}>
+                        {lessons.map((lesson) => {
+                            return (
+                                <option key={lesson.id} value={lesson.id}>{lesson.name}</option>
+                            )
+                        })
+                        }
+                    </select>
+                </div>
+                <div className="sideMenuTasks">
+                    <h2 className="sideMenuItem"> <GiErlenmeyer /> Atividades</h2>
+                    <ul className="tasksItems">
+                        {currentLesson && currentLesson.tasks.map((task, index) => {
+                            return <TaskItem key={task.id} task={task} index={index} />
+                        })}
+                    </ul>
+                </div>
             </div>
-            <div className="sideMenuLessons">
-                <h2 className="sideMenuItem"><RiBookOpenLine /> Aula atual</h2>
-                <select onChange={(event) => {
-                    setCurrentLessonId(event.target.value);
-                    history.push(`/lesson/${event.target.value}/task/1`);
-                }}>
-                    {lessons.map((lesson) => {
-                        return(
-                            <option value={lesson.id}>{lesson.name}</option>
-                        )
-                    })
-                    }
-                </select>
-            </div>
-            <div className="sideMenuTasks">
-                <h2 className="sideMenuItem"> <GiErlenmeyer /> Atividades</h2>
-                <ul className="tasksItems">{currentLesson && currentLesson.tasks.map((task, index) => { return <TaskItem task={task} index={index} /> })}</ul>
-            </div>
-        </div>
+        )
     );
 }
 

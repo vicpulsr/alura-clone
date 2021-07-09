@@ -1,26 +1,45 @@
 .App {
-    display: grid;
-    grid-template-columns: 25% 75%;
-    grid-template-rows: 10% 1fr;
-    grid-template-areas: 
-        "sideMenu header"
-        "sideMenu task"
-    ;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    flex-direction: row;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+    }
+//     display: grid;
+//     grid-template-columns: 25% 75%;
+//     grid-template-rows: 10% 1fr;
+//     grid-template-areas: 
+//         "sideMenu header"
+//         "sideMenu task"
+//     ;
+//     margin: 0;
+//     padding: 0;
+// }
+
+// .header {
+//     display: grid;
+//     grid-area: header;
+// }
+
+// .sideMenu {
+//     display: grid;
+//     grid-area: sideMenu;
+// }
+
+// .task {
+//     display: grid;
+//     grid-area: task;
 }
 
-.header {
-    display: grid;
-    grid-area: header;
-}
+// .menuToggle {
+//     display: none;
+// }
 
-.sideMenu {
-    display: grid;
-    grid-area: sideMenu;
-}
 
-.task {
-    display: grid;
-    grid-area: task;
+@media (max-width: 1024px) {
+    .App .content {
+        overflow: auto;
+    }
 }

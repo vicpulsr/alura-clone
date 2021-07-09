@@ -33,7 +33,6 @@ function Header() {
     function nextLesson() {
         let nextLessonIndex = lessons.indexOf(currentLesson) + 1;
         let nextLesson = lessons[nextLessonIndex];
-        console.log(nextLesson);
         setCurrentLesson(nextLesson);
         nextLesson.tasks[0].watched = true;
         setCurrentTask(nextLesson.tasks[0])

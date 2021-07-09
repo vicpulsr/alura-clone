@@ -10,6 +10,7 @@ body {
   background-color: $dark-200;
   color: $grey-50;
   font-family: $font-family;
+  overflow: auto;
   max-width: 300px;
 }
 
@@ -175,3 +176,12 @@ body {
   }
 }
 
+
+
+@media (max-width: 1024px) {
+  .sideMenu {
+      position: absolute;
+      bottom: 0;
+      top: 0;
+  }
+}

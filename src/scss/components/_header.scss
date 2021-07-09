@@ -29,4 +29,13 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .header {
+    padding: 10px;
 
+    .button {
+      white-space: nowrap;
+      padding: 8px;
+    }
+  }
+}
